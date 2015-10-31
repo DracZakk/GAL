@@ -115,3 +115,16 @@ MyTestCase.prototype.test_eleventhStory = function () {
     x.play_stroke("e1");
     assertEquals(x.get_win(), true);
 };
+
+MyTestCase.prototype.test_twelfthStory = function () {
+    var x = new Engine();
+    x.new_game("white");
+    x.play_list_of_strokes("c4cbl ;d4abr ;c3ctl ;c3ctl ;c4cbl ;e5cbr ;b1ctl ;b2ctr ;c4cbl ;c3");
+    assertEquals(x.get_board(0, 0), "black");
+    assertEquals(x.get_board(1, 1), "black");
+    assertEquals(x.get_board(2, 2), "black");
+    assertEquals(x.get_board(3, 3), "black");
+    assertEquals(x.get_board(4, 4), "black");
+    assertEquals(x.get_win(), true);
+    assertEquals(x.get_current_player(), "black");
+};

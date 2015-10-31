@@ -139,4 +139,28 @@ var Engine =function () {
         this.check_diagonal_win(line, column));
     };
 
+    this.rotation_trad = function (text) {
+        var cycle, top, left;
+        cycle = (text[0] === 'c');
+        if (text[1] === 't') { top = 0;
+        } else { top = 1; }
+        if (text[2] === 'l') { left = 0;
+        } else { left = 1; }
+        this.rotation(top, left, cycle);
+    };
+
+    this.play_list_of_strokes = function (string_stroke) {
+        var array = string_stroke.split(new RegExp(" ;", "g")), i, stroke, rotation;
+        for (i = 0; i < array.length; i++) {
+            if (array[i].length === 5) {
+                stroke = array[i][0].concat(array[i][1]);
+                this.play_stroke(stroke);
+                rotation = (array[i][2].concat(array[i][3])).concat(array[i][4]);
+                this.rotation_trad(rotation);
+            } else {
+                stroke = array[i][0].concat(array[i][1]);
+                this.play_stroke(stroke);
+            }
+        }
+    };
 };
