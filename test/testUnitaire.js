@@ -65,3 +65,29 @@ MyTestCase.prototype.test_ninthStory = function () {
     assertEquals(x.get_board(0, 2), undefined);
     assertEquals(x.get_current_player(), "white");
 };
+
+MyTestCase.prototype.test_tenthStory = function () {
+    x.play_stroke("b1");
+    x.rotation(0, 0, true);
+    x.play_stroke("a2");
+    x.rotation(0, 0, false);
+    x.play_stroke("c1");
+    x.rotation(0, 0, true);
+    x.play_stroke("a3");
+    x.rotation(0, 0, false);
+    x.play_stroke("d1");
+    x.rotation(0, 1, false);
+    x.play_stroke("f3");
+    x.rotation(0, 1, true);
+
+    assertEquals(x.get_nb_marbles(), 8);
+    assertEquals(x.get_board(0, 0), "white");
+    assertEquals(x.get_board(0, 1), "white");
+    assertEquals(x.get_board(0, 2), "white");
+    assertEquals(x.get_board(0, 3), "white");
+
+    assertEquals(x.get_board(2, 0), "black");
+    assertEquals(x.get_board(2, 1), "black");
+    assertEquals(x.get_board(2, 2), "black");
+    assertEquals(x.get_board(2, 3), "black");
+};
