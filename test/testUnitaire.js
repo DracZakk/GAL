@@ -128,3 +128,8 @@ MyTestCase.prototype.test_twelfthStory = function () {
     assertEquals(x.get_win(), true);
     assertEquals(x.get_current_player(), "black");
 };
+
+MyTestCase.prototype.test_thirteenthStory = function () {
+    var x = new Engine();
+    x.new_game("black");
+};
