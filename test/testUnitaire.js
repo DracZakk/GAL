@@ -91,3 +91,27 @@ MyTestCase.prototype.test_tenthStory = function () {
     assertEquals(x.get_board(2, 2), "black");
     assertEquals(x.get_board(2, 3), "black");
 };
+
+MyTestCase.prototype.test_eleventhStory = function () {
+    var x = new Engine();
+    x.new_game("white");
+    x.play_stroke("a1");
+    x.rotation(0, 0, true);
+    x.play_stroke("a1");
+    x.rotation(0, 0, false);
+    x.play_stroke("b1");
+    x.rotation(0, 0, true);
+    x.play_stroke("a2");
+    x.rotation(0, 0, false);
+    x.play_stroke("c1");
+    x.rotation(0, 0, true);
+    x.play_stroke("a3");
+    x.rotation(0, 0, false);
+    x.play_stroke("d1");
+    x.rotation(0, 1, false);
+    x.play_stroke("f3");
+    x.rotation(0, 1, true);
+    assertEquals(x.get_win(), false);
+    x.play_stroke("e1");
+    assertEquals(x.get_win(), true);
+};

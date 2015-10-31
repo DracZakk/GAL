@@ -50,6 +50,7 @@ var Engine =function () {
         } else {
             throw new Exception();
         }
+        this.check_win(stroke);
     };
 
     this.rotation_array = function (tempory_array, tempory_array2, direction) {
@@ -99,4 +100,43 @@ var Engine =function () {
             current_player = "white";
         }
     };
+
+    this.get_nb_stroke = function (line, column, increment_line, increment_column) {
+        var tmp_line = line, tmp_column = column, cpt = 1;
+        while ((tmp_column + increment_column) >= 0 && (tmp_column + increment_column) <= 5 &&
+        (tmp_line + increment_line) >= 0 && (tmp_line + increment_line) <= 5 &&
+        board[tmp_line][tmp_column] ===
+        board[tmp_line + increment_line][tmp_column + increment_column]) {
+            cpt++;
+            tmp_column = tmp_column + increment_column;
+            tmp_line = tmp_line + increment_line;
+        }
+
+        return cpt;
+    };
+
+    this.check_line_win = function (line, column) {
+        return (this.get_nb_stroke(line, column, -1, 0) +
+        this.get_nb_stroke(line, column, 1, 0) - 1 >= 5);
+    };
+
+    this.check_column_win = function (line, column) {
+        return (this.get_nb_stroke(line, column, 0, -1) +
+        this.get_nb_stroke(line, column, 0, 1) - 1 >= 5);
+    };
+
+    this.check_diagonal_win = function (line, column) {
+        return (this.get_nb_stroke(line, column, -1, -1) +
+            this.get_nb_stroke(line, column, 1, 1) - 1 >= 5) ||
+            (this.get_nb_stroke(line, column, 1, -1) +
+            this.get_nb_stroke(line, column, -1, 1) - 1 >= 5);
+    };
+
+    this.check_win = function (stroke) {
+        var column = stroke.charCodeAt(0) - 97, line = stroke.charCodeAt(1) - 49;
+        win = (this.check_column_win(line, column) ||
+        this.check_line_win(line, column) ||
+        this.check_diagonal_win(line, column));
+    };
+
 };
