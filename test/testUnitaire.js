@@ -40,3 +40,28 @@ MyTestCase.prototype.test_fifthStory = function () {
 MyTestCase.prototype.test_sixthStory = function () {
     assertEquals(x.get_current_player(), "black");
 };
+
+// Start TP2 (tp-gal-8.pdf)
+
+MyTestCase.prototype.test_seventhStory = function () {
+    x.play_stroke("a1");
+    assertEquals(x.get_nb_marbles(), 2);
+};
+
+MyTestCase.prototype.test_eigthStory = function () {
+    x.rotation(0, 0, false);
+    assertEquals(x.get_nb_marbles(), 2);
+    assertEquals(x.get_board(0, 0), "white");
+    assertEquals(x.get_board(2, 0), "black");
+    assertEquals(x.get_board(0, 2), undefined);
+};
+
+MyTestCase.prototype.test_ninthStory = function () {
+    assertException(function () {
+        x.play_stroke("a1");
+    }, "Exception");
+    assertEquals(x.get_board(0, 0), "white");
+    assertEquals(x.get_board(2, 0), "black");
+    assertEquals(x.get_board(0, 2), undefined);
+    assertEquals(x.get_current_player(), "white");
+};
