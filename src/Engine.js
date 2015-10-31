@@ -51,6 +51,7 @@ var Engine =function () {
             throw new Exception();
         }
         this.check_win(stroke);
+        this.check_drawn();
     };
 
     this.rotation_array = function (tempory_array, tempory_array2, direction) {
@@ -160,6 +161,16 @@ var Engine =function () {
             } else {
                 stroke = array[i][0].concat(array[i][1]);
                 this.play_stroke(stroke);
+            }
+        }
+    };
+
+    this.check_drawn = function () {
+        var line, column;
+        drawn = true;
+        for (line = 0; line < 6; line++) {
+            for (column = 0; column < 6; column++) {
+                drawn = drawn && (board[line][column] !== undefined);
             }
         }
     };

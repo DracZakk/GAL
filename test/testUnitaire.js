@@ -133,3 +133,15 @@ MyTestCase.prototype.test_thirteenthStory = function () {
     var x = new Engine();
     x.new_game("black");
 };
+
+MyTestCase.prototype.test_fourteenthStory = function () {
+    x.new_game("white");
+    x.play_list_of_strokes("a1cbl ;d1cbr ;b1cbl ;e1cbr ;c1cbl ;f1cbr");
+    x.play_list_of_strokes("a2cbl ;d2cbr ;b2cbl ;e2cbr ;c2cbl ;f2cbr");
+    x.play_list_of_strokes("a3cbl ;d3cbr ;b3cbl ;e3cbr ;c3cbl ;f3cbr");
+    x.play_list_of_strokes("b5ctl ;a4ctr ;e4ctl ;b4ctr ;f4ctl ;d4ctr");
+    x.play_list_of_strokes("d5ctl ;a5ctr ;f5ctl ;c4ctr ;a6ctl ;c5ctr");
+    x.play_list_of_strokes("b6ctl ;e5ctr ;d6ctl ;c6ctr ;f6ctl ;e6ctr");
+    assertEquals(x.get_win(), false);
+    assertEquals(x.get_drawn(), true);
+};
