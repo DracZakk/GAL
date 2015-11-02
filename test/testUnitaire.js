@@ -145,3 +145,4 @@ MyTestCase.prototype.test_fourteenthStory = function () {
     assertEquals(x.get_win(), false);
     assertEquals(x.get_drawn(), true);
 };
+
