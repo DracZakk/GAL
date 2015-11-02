@@ -23,7 +23,7 @@ MyTestCase.prototype.test_secondStory = function () {
 };
 
 MyTestCase.prototype.test_thirdStory = function () {
-    x.play_stroke("a1");
+    x.play_stroke("a1", "white");
     assertEquals(x.get_board(0, 0), "white");
 };
 
@@ -44,7 +44,7 @@ MyTestCase.prototype.test_sixthStory = function () {
 // Start TP2 (tp-gal-8.pdf)
 
 MyTestCase.prototype.test_seventhStory = function () {
-    x.play_stroke("a1");
+    x.play_stroke("a1", "black");
     assertEquals(x.get_nb_marbles(), 2);
 };
 
@@ -58,8 +58,8 @@ MyTestCase.prototype.test_eigthStory = function () {
 
 MyTestCase.prototype.test_ninthStory = function () {
     assertException(function () {
-        x.play_stroke("a1");
-    }, "Exception");
+        x.play_stroke("a1", "white");
+    }, "Exception, la pierre est deja presente !");
     assertEquals(x.get_board(0, 0), "white");
     assertEquals(x.get_board(2, 0), "black");
     assertEquals(x.get_board(0, 2), undefined);
@@ -67,17 +67,17 @@ MyTestCase.prototype.test_ninthStory = function () {
 };
 
 MyTestCase.prototype.test_tenthStory = function () {
-    x.play_stroke("b1");
+    x.play_stroke("b1", "white");
     x.rotation(0, 0, true);
-    x.play_stroke("a2");
+    x.play_stroke("a2", "black");
     x.rotation(0, 0, false);
-    x.play_stroke("c1");
+    x.play_stroke("c1", "white");
     x.rotation(0, 0, true);
-    x.play_stroke("a3");
+    x.play_stroke("a3", "black");
     x.rotation(0, 0, false);
-    x.play_stroke("d1");
+    x.play_stroke("d1", "white");
     x.rotation(0, 1, false);
-    x.play_stroke("f3");
+    x.play_stroke("f3", "black");
     x.rotation(0, 1, true);
 
     assertEquals(x.get_nb_marbles(), 8);
@@ -95,24 +95,24 @@ MyTestCase.prototype.test_tenthStory = function () {
 MyTestCase.prototype.test_eleventhStory = function () {
     var x = new Engine();
     x.new_game("white");
-    x.play_stroke("a1");
+    x.play_stroke("a1", "white");
     x.rotation(0, 0, true);
-    x.play_stroke("a1");
+    x.play_stroke("a1", "black");
     x.rotation(0, 0, false);
-    x.play_stroke("b1");
+    x.play_stroke("b1", "white");
     x.rotation(0, 0, true);
-    x.play_stroke("a2");
+    x.play_stroke("a2", "black");
     x.rotation(0, 0, false);
-    x.play_stroke("c1");
+    x.play_stroke("c1", "white");
     x.rotation(0, 0, true);
-    x.play_stroke("a3");
+    x.play_stroke("a3", "black");
     x.rotation(0, 0, false);
-    x.play_stroke("d1");
+    x.play_stroke("d1", "white");
     x.rotation(0, 1, false);
-    x.play_stroke("f3");
+    x.play_stroke("f3", "black");
     x.rotation(0, 1, true);
     assertEquals(x.get_win(), false);
-    x.play_stroke("e1");
+    x.play_stroke("e1", "white");
     assertEquals(x.get_win(), true);
 };
 
@@ -146,3 +146,9 @@ MyTestCase.prototype.test_fourteenthStory = function () {
     assertEquals(x.get_drawn(), true);
 };
 
+MyTestCase.prototype.test_fifteenthStory = function () {
+    x.new_game("white");
+    assertException(function () {
+        x.play_stroke("a1", "black");
+    }, "Exception, ce n'est pas votre couleur !");
+};
